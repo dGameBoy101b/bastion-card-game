@@ -15,6 +15,8 @@ class BattleDecider:
 		return NON_ACE_ORDER.index(a) - NON_ACE_ORDER.index(b)
 
 	def determine_result(self, battle: Battle) -> Battle.Result:
+		if battle.player1 is None or battle.player2 is None:
+			raise ValueError("Some player cards missing from battle")
 		order_1_2 = self.determine_order(battle.player1, battle.player2)
 		order_n_1 = self.determine_order(battle.neutral, battle.player1)
 		order_n_2 = self.determine_order(battle.neutral, battle.player2)
