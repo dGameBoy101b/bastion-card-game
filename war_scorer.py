@@ -18,3 +18,10 @@ class WarScorer:
 		for battle in battles:
 			battle.flip_players()
 		return self.player1_score(battles)
+	
+	def war_result(self, battles: Tuple[Battle]) -> Battle.Result:
+		player1_score = self.player1_score(battles)
+		player2_score = self.player2_score(battles)
+		if player1_score == player2_score:
+			return Battle.Result.Tie
+		return Battle.Result.Player1Win if player1_score > player2_score else Battle.Result.Player2Win
