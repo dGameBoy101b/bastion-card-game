@@ -1,6 +1,7 @@
-from enum import StrEnum
+from enum import Enum
 
-class Rank(StrEnum):
+class Rank(Enum):
+	Ace = "A"
 	Two = "2"
 	Three = "3"
 	Four = "4"
@@ -13,7 +14,6 @@ class Rank(StrEnum):
 	Jack = "J"
 	Queen = "Q"
 	King = "K"
-	Ace = "A"
 
 	def __str__(self)->str:
 		return self.value
