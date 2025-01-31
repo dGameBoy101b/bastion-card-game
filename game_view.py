@@ -1,11 +1,11 @@
-from bastion_game import BastionGame
+from game import Game
 from battle import Battle
 from battle_decider import BattleDecider
 from rank import Rank
 from war_scorer import WarScorer
 
-class BastionGameView:
-	def __init__(self, game:BastionGame, is_player1: bool = True):
+class GameView:
+	def __init__(self, game:Game, is_player1: bool = True):
 		self.__game = game
 		self.__is_player1 = is_player1
 	

@@ -1,5 +1,5 @@
 from typing import Iterable
-from bastion_game_view import BastionGameView
+from game_view import GameView
 from battle import Battle
 from rank import Rank
 
@@ -25,7 +25,7 @@ class InputStrategy:
 				  ' '.join(self.fixed_width_card(card) for card in neutrals),
 				  ' '.join(self.fixed_width_card(card) for card in my_plays)))
 
-	def prompt(self, view: BastionGameView) -> str:
+	def prompt(self, view: GameView) -> str:
 		return '\n'.join((self.player_line(view.opponent_score(), view.opponents_cards()),
 				"",
 				self.battles_lines(view.previous_battles(), view.next_neutrals()),
@@ -37,7 +37,7 @@ class InputStrategy:
 	def convert_input(self, input: str) -> Rank:
 		return Rank(input.strip().upper())
 
-	def __call__(self, view: BastionGameView) -> Rank:
+	def __call__(self, view: GameView) -> Rank:
 		prompt = self.prompt(view)
 		card = None
 		while card is None:

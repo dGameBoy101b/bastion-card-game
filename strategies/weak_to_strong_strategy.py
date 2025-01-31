@@ -1,4 +1,4 @@
-from bastion_game_view import BastionGameView
+from game_view import GameView
 from battle import Battle
 from rank import Rank
 
@@ -15,14 +15,14 @@ class WeakToStrongStrategy:
 		self.result_strength = WeakToStrongStrategy.DEFAULT_RESULT_STRENGTH
 		self.result_strength.update(result_strength)
 
-	def card_strength(self, card: Rank, view: BastionGameView) -> int:
+	def card_strength(self, card: Rank, view: GameView) -> int:
 		strength = 0
 		for neutral in view.next_neutrals():
 			result = view.decider().determine_result(Battle(neutral, card, neutral))
 			strength += self.result_strength[result]
 		return strength
 
-	def __call__(self, view:BastionGameView) -> Rank:
+	def __call__(self, view:GameView) -> Rank:
 		strongest: Rank = None
 		strongest_strength: int = None
 		for card in view.your_cards():

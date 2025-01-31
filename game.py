@@ -1,17 +1,17 @@
 from random import shuffle
 from typing import Callable
-from bastion_game_view import BastionGameView
+from game_view import GameView
 from battle import Battle
 from battle_decider import BattleDecider
 from rank import Rank
 from war_scorer import WarScorer
 
-class BastionGame:
+class Game:
 	def __init__(self, battle_decider: BattleDecider = BattleDecider(), war_scorer: WarScorer = WarScorer()):
 		self.battle_decider = battle_decider
 		self.war_scorer = war_scorer
-		self.player1_view = BastionGameView(self, True)
-		self.player2_view = BastionGameView(self, False)
+		self.player1_view = GameView(self, True)
+		self.player2_view = GameView(self, False)
 		self.reset()
 	
 	def reset(self) -> None:
@@ -31,7 +31,7 @@ class BastionGame:
 	def winner(self) -> Battle.Result | None:
 		return self.war_scorer.war_result(self.battles)
 
-	def play_next_turn(self, player1_strategy: Callable[[BastionGameView], Rank], player2_strategy: Callable[[BastionGameView], Rank]) -> None:
+	def play_next_turn(self, player1_strategy: Callable[[GameView], Rank], player2_strategy: Callable[[GameView], Rank]) -> None:
 		if self.current_index >= len(self.battles):
 			raise IndexError("No next turn to play")
 		
