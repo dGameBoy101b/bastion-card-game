@@ -18,7 +18,7 @@ class WarScorer:
 	
 	def player2_score(self, battles: Tuple[Battle]) -> int:
 		for battle in battles:
-			battle.flip_players()
+			battle = battle.fliped_players()
 		return self.player1_score(battles)
 	
 	def war_result(self, battles: Tuple[Battle]) -> Battle.Result | None:
