@@ -46,7 +46,7 @@ class Game:
 		battle = self.battles[self.current_index]
 		battle.player1 = player1_card
 		battle.player2 = player2_card
-		self.battle_decider.determine_result(battle)
+		battle.result = self.battle_decider.determine_result(battle)
 		self.current_index += 1
 		self.player1_cards.remove(player1_card)
 		self.player2_cards.remove(player2_card)
