@@ -13,23 +13,31 @@ class InputStrategy:
 		return f"{score}\t{' '.join(self.fixed_width_card(card) for card in cards)}"
 	
 	def battles_lines(self, previous_battles: Iterable[Battle], next_neutrals: Iterable[Rank]) -> str:
+		COLUMN_SEPARATOR = ' '
+		ROW_SEPARATOR = "\n"
+		OPPONENT_WIN = "^"
+		YOUR_WIN = "v"
+		NOT_WIN = ""
 		opponent_plays = []
 		my_plays = []
 		neutrals = []
+		results = []
 		for battle in previous_battles:
 			opponent_plays.append(battle.player2)
 			my_plays.append(battle.player1)
 			neutrals.append(battle.neutral)
+			results.append(battle.result)
 		neutrals.extend(next_neutrals)
-		return '\n'.join((' '.join(self.fixed_width_card(card) for card in opponent_plays),
-				  ' '.join(self.fixed_width_card(card) for card in neutrals),
-				  ' '.join(self.fixed_width_card(card) for card in my_plays)))
+		return ROW_SEPARATOR.join((
+			COLUMN_SEPARATOR.join(self.fixed_width_card(OPPONENT_WIN if result == Battle.Result.Player2Win else NOT_WIN) for result in results),
+			COLUMN_SEPARATOR.join(self.fixed_width_card(card) for card in opponent_plays),
+			COLUMN_SEPARATOR.join(self.fixed_width_card(card) for card in neutrals),
+			COLUMN_SEPARATOR.join(self.fixed_width_card(card) for card in my_plays),
+			COLUMN_SEPARATOR.join(self.fixed_width_card(YOUR_WIN if result == Battle.Result.Player1Win else NOT_WIN) for result in results)))
 
 	def prompt(self, view: GameView) -> str:
 		return '\n'.join((self.player_line(view.opponent_score(), view.opponents_cards()),
-				"",
 				self.battles_lines(view.previous_battles(), view.next_neutrals()),
-				"",
 				self.player_line(view.your_score(), view.your_cards()),
 				"Which card would you like to play?> "))
 		
