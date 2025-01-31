@@ -45,5 +45,5 @@ WINNER_TEXT = {
 	Battle.Result.Player2Win: "Player 2 won"
 }
 
-print(InputStrategy().prompt(game.player1_view))
+print(InputStrategy().game_state(game.player1_view))
 print(WINNER_TEXT[game.winner()])
