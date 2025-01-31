@@ -23,10 +23,10 @@ class Game:
 		self.current_index = 0
 	
 	def player1_score(self) -> int:
-		self.war_scorer.player1_score(self.battles)
+		return self.war_scorer.player1_score(self.battles)
 	
 	def player2_score(self) -> int:
-		self.war_scorer.player2_score(self.battles)
+		return self.war_scorer.player2_score(self.battles)
 
 	def winner(self) -> Battle.Result | None:
 		return self.war_scorer.war_result(self.battles)
