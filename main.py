@@ -41,9 +41,9 @@ while game.winner() is None:
 
 WINNER_TEXT = {
 	Battle.Result.Tie: "It was a tie",
-	Battle.Result.Player1Win: "You won",
-	Battle.Result.Player2Win: "You lost"
+	Battle.Result.Player1Win: "Player 1 won",
+	Battle.Result.Player2Win: "Player 2 won"
 }
 
-print(player1.prompt(game.player1_view))
+print(InputStrategy().prompt(game.player1_view))
 print(WINNER_TEXT[game.winner()])
