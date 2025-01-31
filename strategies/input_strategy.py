@@ -4,6 +4,8 @@ from battle import Battle
 from rank import Rank
 
 class InputStrategy:
+	'''Prints current game state and prompts for a card to play'''
+
 	def fixed_width_card(self, card: Rank) -> str:
 		return str(card).center(2)
 

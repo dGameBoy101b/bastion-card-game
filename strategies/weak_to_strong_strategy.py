@@ -3,6 +3,8 @@ from battle import Battle
 from rank import Rank
 
 class WeakToStrongStrategy:
+	'''Plays the card least likely to win future battles'''
+
 	DEFAULT_RESULT_STRENGTH = {
 		Battle.Result.Player1Win: 1,
 		Battle.Result.Tie: 0,
