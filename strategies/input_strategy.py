@@ -35,11 +35,13 @@ class InputStrategy:
 			COLUMN_SEPARATOR.join(self.fixed_width_card(card) for card in my_plays),
 			COLUMN_SEPARATOR.join(self.fixed_width_card(YOUR_WIN if result == Battle.Result.Player1Win else NOT_WIN) for result in results)))
 
-	def prompt(self, view: GameView) -> str:
+	def game_state(self, view: GameView) -> str:
 		return '\n'.join((self.player_line(view.opponent_score(), view.opponents_cards()),
-				self.battles_lines(view.previous_battles(), view.next_neutrals()),
-				self.player_line(view.your_score(), view.your_cards()),
-				"Which card would you like to play?> "))
+			self.battles_lines(view.previous_battles(), view.next_neutrals()),
+			self.player_line(view.your_score(), view.your_cards())))
+
+	def prompt(self, view: GameView) -> str:
+		return f"{self.game_state(view)}\nWhich card would you like to play?> "
 		
 	
 	def convert_input(self, input: str) -> Rank:
