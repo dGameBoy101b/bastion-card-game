@@ -6,6 +6,8 @@ class WarScorer:
 		score = 0
 		pending_score = 1
 		for battle in battles:
+			if battle.result is None:
+				break
 			if battle.result == Battle.Result.Tie:
 				pending_score += 1
 				continue
@@ -19,7 +21,9 @@ class WarScorer:
 			battle.flip_players()
 		return self.player1_score(battles)
 	
-	def war_result(self, battles: Tuple[Battle]) -> Battle.Result:
+	def war_result(self, battles: Tuple[Battle]) -> Battle.Result | None:
+		if len(battles) < 1 or battles[-1].result is None:
+			return None
 		player1_score = self.player1_score(battles)
 		player2_score = self.player2_score(battles)
 		if player1_score == player2_score:

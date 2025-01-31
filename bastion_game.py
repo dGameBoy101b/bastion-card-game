@@ -28,7 +28,7 @@ class BastionGame:
 	def player2_score(self) -> int:
 		self.war_scorer.player2_score(self.battles)
 
-	def winner(self) -> Battle.Result:
+	def winner(self) -> Battle.Result | None:
 		return self.war_scorer.war_result(self.battles)
 
 	def play_next_turn(self, player1_strategy: Callable[[BastionGameView], Rank], player2_strategy: Callable[[BastionGameView], Rank]) -> None:
