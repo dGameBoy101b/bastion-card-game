@@ -11,7 +11,7 @@ class WeakToStrongStrategy:
 		Battle.Result.Player2Win: -1
 	}
 
-	def __init__(self, result_strength: dict[Battle.Result, int] = None):
+	def __init__(self, result_strength: dict[Battle.Result, int] = ()):
 		self.result_strength = WeakToStrongStrategy.DEFAULT_RESULT_STRENGTH
 		self.result_strength.update(result_strength)
 
@@ -23,10 +23,11 @@ class WeakToStrongStrategy:
 		return strength
 
 	def __call__(self, view:GameView) -> Rank:
-		strongest: Rank = None
-		strongest_strength: int = None
+		weakest: Rank = None
+		weakest_strength: int = None
 		for card in view.your_cards():
 			strength = self.card_strength(card, view)
-			if strongest is None or strength > strongest_strength:
-				strongest = card
-				strongest_strength = strength
+			if weakest is None or strength < weakest_strength:
+				weakest = card
+				weakest_strength = strength
+		return weakest
