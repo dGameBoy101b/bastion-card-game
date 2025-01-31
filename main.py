@@ -17,4 +17,5 @@ WINNER_TEXT = {
 	Battle.Result.Player2Win: "You lost"
 }
 
+print(player.prompt(game.player1_view))
 print(WINNER_TEXT[game.winner()])
