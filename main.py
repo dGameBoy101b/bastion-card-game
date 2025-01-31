@@ -7,6 +7,7 @@ from rank import Rank
 from strategies.input_strategy import InputStrategy
 from strategies.random_strategy import random_strategy
 from strategies.weak_to_strong_strategy import WeakToStrongStrategy
+from strategies.weakest_winner_strategy import WeakestWinnerStrategy
 from war_scorer import WarScorer
 
 def ask_multichoice(prompt: str, choices: Iterable[str]) -> int:
@@ -28,8 +29,8 @@ def ask_multichoice(prompt: str, choices: Iterable[str]) -> int:
 		return response
 
 def ask_player(prompt: str) -> Callable[[GameView], Rank]:
-	CHOICES = ("Player", "Random", "Weak To Strong")
-	RESULT = (InputStrategy(), random_strategy, WeakToStrongStrategy())
+	CHOICES = ("Player", "Random", "Weak To Strong", "Weakest Winner")
+	RESULT = (InputStrategy(), random_strategy, WeakToStrongStrategy(), WeakestWinnerStrategy())
 	index = ask_multichoice(prompt, CHOICES)
 	return RESULT[index]
 
