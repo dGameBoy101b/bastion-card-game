@@ -29,7 +29,7 @@ def ask_multichoice(prompt: str, choices: Iterable[str]) -> int:
 
 def ask_player(prompt: str) -> Callable[[GameView], Rank]:
 	CHOICES = ("Player", "Random", "Weak To Strong")
-	RESULT = (InputStrategy(), random_strategy, WeakToStrongStrategy)
+	RESULT = (InputStrategy(), random_strategy, WeakToStrongStrategy())
 	index = ask_multichoice(prompt, CHOICES)
 	return RESULT[index]
 
