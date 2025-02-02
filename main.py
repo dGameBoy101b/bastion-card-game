@@ -2,20 +2,22 @@ from game import Game
 from battle import Battle
 from battle_decider import BattleDecider
 from strategies.input_strategy import InputStrategy
-from strategies.random_strategy import random_strategy
-from strategies.weak_to_strong_strategy import WeakToStrongStrategy
-from strategies.weakest_winner_strategy import WeakestWinnerStrategy
-from strategy_register import StrategyInfo, ask_strategy, strategies
+from strategy_register import ask_strategy
 from war_scorer import WarScorer
 
 def register_strategies():
-	global strategies
+	from strategy_register import StrategyInfo, strategies
+	from strategies.random_strategy import random_strategy
+	from strategies.weak_to_strong_strategy import WeakToStrongStrategy
+	from strategies.weakest_winner_strategy import WeakestWinnerStrategy
+
 	strategies += [StrategyInfo(InputStrategy(), "Player"),
 		StrategyInfo(random_strategy, "Random"),
 		StrategyInfo(WeakToStrongStrategy(), "Weak To Strong"),
 		StrategyInfo(WeakestWinnerStrategy(), "Weakest Winner")]
 
 game = Game(BattleDecider(), WarScorer())
+register_strategies()
 player1 = ask_strategy("Player 1> ")
 player2 = ask_strategy("Player 2> ")
 while game.winner() is None:
