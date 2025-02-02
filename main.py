@@ -1,4 +1,5 @@
-from typing import Callable, Iterable
+from typing import Callable
+import ask_multichoice
 from game import Game
 from battle import Battle
 from battle_decider import BattleDecider
@@ -9,24 +10,6 @@ from strategies.random_strategy import random_strategy
 from strategies.weak_to_strong_strategy import WeakToStrongStrategy
 from strategies.weakest_winner_strategy import WeakestWinnerStrategy
 from war_scorer import WarScorer
-
-def ask_multichoice(prompt: str, choices: Iterable[str]) -> int:
-	lines = [f"{index}: {choices[index]}" for index in range(len(choices))]
-	prompt = f"{'\n'.join(lines)}\n{prompt}"
-	while True:
-		response = input(prompt)
-		try:
-			response = int(response)
-		except ValueError as x:
-			print("Enter a number")
-			continue
-		if response < 0:
-			print("Enter a number 0 or greater")
-			continue
-		if response >= len(choices):
-			print(f"Enter a number lesser than {len(choices)}")
-			continue
-		return response
 
 def ask_player(prompt: str) -> Callable[[GameView], Rank]:
 	CHOICES = ("Player", "Random", "Weak To Strong", "Weakest Winner")
