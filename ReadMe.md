@@ -22,7 +22,7 @@ Win the most points by winning battles.
 1. If both players play cards of the same rank, it's a tie
 2. If neither played card beats the neutral, it's also a tie
 3. Otherwise, the player whose played card beats the other player wins
-4. The winner gets 1 point for the current battle and every tied battle since the last decisive battle
+4. The winner gets 1 point and an extra point for each tied battle since the last decisive battle
 
 ## Card Power
 
