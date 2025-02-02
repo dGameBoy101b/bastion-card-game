@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from typing import List
-import ask_multichoice
+from ask_multichoice import ask_multichoice
 from game import Strategy
 
 @dataclass(frozen=True)
