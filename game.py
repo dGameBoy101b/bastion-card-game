@@ -6,6 +6,8 @@ from battle_decider import BattleDecider
 from rank import Rank
 from war_scorer import WarScorer
 
+type Strategy = Callable[[GameView], Rank]
+
 class Game:
 	def __init__(self, battle_decider: BattleDecider = BattleDecider(), war_scorer: WarScorer = WarScorer()):
 		self.battle_decider = battle_decider
@@ -31,7 +33,7 @@ class Game:
 	def winner(self) -> Battle.Result | None:
 		return self.war_scorer.war_result(self.battles)
 
-	def play_next_turn(self, player1_strategy: Callable[[GameView], Rank], player2_strategy: Callable[[GameView], Rank]) -> None:
+	def play_next_turn(self, player1_strategy: Strategy, player2_strategy: Strategy) -> None:
 		if self.current_index >= len(self.battles):
 			raise IndexError("No next turn to play")
 		
