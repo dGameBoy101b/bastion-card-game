@@ -15,6 +15,6 @@ class Battle:
 	player2: Rank|None = None
 	result: Result|None = None
 
-	def fliped_players(self) -> 'Battle':
+	def flipped_players(self) -> 'Battle':
 		return Battle(self.neutral, self.player2, self.player1, None if self.result is None else Battle.Result(-self.result.value))
 

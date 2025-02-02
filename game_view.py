@@ -38,5 +38,5 @@ class GameView:
 		battles = tuple(self.__game.battles[:self.__game.current_index])
 		if not self.__is_player1:
 			for battle in battles:
-				battle = battle.fliped_players()
+				battle = battle.flipped_players()
 		return battles
